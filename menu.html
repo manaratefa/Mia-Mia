@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو المخبوزات</title>
+    <!-- خط تاجوال من جوجل لخطوط أنيقة وعصرية تتناسب مع المنيو -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات جوجل (Material Symbols) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color: #121619;
+            /* درجة داكنة استيحاءً من واجهة المخبز */
+            --card-bg: #1c2226;
+            /* أفتح قليلاً للبطاقات لتبرز */
+            --primary-text: #f5f5f5;
+            /* نص فاتح جداً */
+            --secondary-text: #b6c2c9;
+            /* رمادي مائل للزرقة يعطي طابع الفخامة */
+            --accent-color: #ff6b6b;
+            /* أحمر ساطع للأسعار */
+            --gold-accent: #dca75b;
+            /* ذهبي أنيق متناسب مع الداكن */
+            --border-color: #2b353c;
+            /* فواصل داكنة */
+            --dot-color: #4a5a66;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+
+            --font-family: 'Tajawal', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--primary-text);
+            line-height: 1.6;
+            padding: 0 0 3rem 0;
+        }
+
+        .menu-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+            top: -4rem;
+            /* رفع المنيو ليتداخل مع الغلاف */
+        }
+
+        .hero-banner {
+            width: 100%;
+            height: 50vh;
+            /* يجعل الغلاف يأخذ نصف الشاشة تقريباً */
+            min-height: 400px;
+            background-color: var(--secondary-text);
+            background-image: url('cover.jpg');
+            /* سيتم وضع صورة الغلاف هنا */
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            margin-bottom: 2rem;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+            padding: 0 1.5rem;
+            transform: translateY(10px);
+        }
+
+        .hero-content .logo-icon {
+            font-size: 4rem;
+            color: var(--gold-accent);
+            margin-bottom: 1rem;
+            display: inline-block;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content h1::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+            border-radius: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: #fcfaf8;
+            margin-top: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-section {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--gold-accent), #f3c68f);
+        }
+
+        .menu-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .section-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(220, 167, 91, 0.15), rgba(220, 167, 91, 0.05));
+            border-radius: 14px;
+            color: var(--gold-accent);
+            margin-left: 1rem;
+            /* المسافة من اليسار لأن الاتجاه RTL */
+        }
+
+        .section-icon span {
+            font-size: 28px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-text);
+        }
+
+        .menu-list {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary-text);
+            background: var(--card-bg);
+            padding-left: 8px;
+            /* لتغطية النقط المنقطة */
+            max-width: 75%;
+        }
+
+        /* خطوط التوصيل بين الاسم والسعر */
+        .item-dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted var(--dot-color);
+            margin: 0 4px;
+            position: relative;
+            top: -7px;
+            z-index: -1;
+        }
+
+        .item-price {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            background: var(--card-bg);
+            padding-right: 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .currency {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--secondary-text);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--secondary-text);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* حركات الظهور (Animations) */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-section {
+            animation: fadeIn 0.8s ease backwards;
+        }
+
+        /* تتابع ظهور الأقسام */
+        .menu-section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .menu-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .menu-section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .menu-section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .menu-section:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .menu-section:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .menu-section:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .menu-section:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .menu-section:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        /* التصميم المتجاوب للهواتف */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 0 1.5rem 0;
+            }
+
+            .hero-banner {
+                height: 40vh;
+                min-height: 320px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-content .logo-icon {
+                font-size: 2.5rem;
+            }
+
+            .menu-container {
+                padding: 0 1rem;
+                top: -3rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .menu-section {
+                padding: 1.8rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .item-name {
+                font-size: 1.05rem;
+            }
+
+            .item-price {
+                font-size: 1.15rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero-banner">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="material-symbols-outlined logo-icon">bakery_dining</span>
+            <h1>مخبوزات مية مية</h1>
+            <p>MIA MIA BAKERY</p>
+        </div>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-grid">
+
+            <!-- القسم 1: الكرواسون والمعجنات -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">bakery_dining</span>
+                    </div>
+                    <h2 class="section-title">الكرواسون والمعجنات</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">كرواسون ساده</span><span
+                            class="item-dots"></span><span class="item-price">20<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كرواسون شيكولاته</span><span
+                            class="item-dots"></span><span class="item-price">25<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كرواسون رومى</span><span
+                            class="item-dots"></span><span class="item-price">30<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كرواسون تركى</span><span
+                            class="item-dots"></span><span class="item-price">45<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كرواسون بانيه</span><span
+                            class="item-dots"></span><span class="item-price">45<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كرواسون بانيه جبنه برميلى</span><span
+                            class="item-dots"></span><span class="item-price">20<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كرواسون حلو</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">باتيه جبنه رومى</span><span
+                            class="item-dots"></span><span class="item-price">25<span class="currency">ج.م</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- القسم 2: الساليزونات -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">local_pizza</span>
+                    </div>
+                    <h2 class="section-title">الساليزونات</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">لحوم (كيلو)</span><span class="item-dots"></span><span
+                            class="item-price">250<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">جبن (كيلو)</span><span class="item-dots"></span><span
+                            class="item-price">210<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">مينى بيتزا (كيلو)</span><span
+                            class="item-dots"></span><span class="item-price">220<span
+                                class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">مناقيش (كيلو)</span><span
+                            class="item-dots"></span><span class="item-price">250<span
+                                class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+            <!-- القسم 3: القطع -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">cake</span>
+                    </div>
+                    <h2 class="section-title">القطع</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">دانش</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">ابل باى</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">سينابون</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">فته سينابون</span><span class="item-dots"></span><span
+                            class="item-price">50<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">دونتس صغير</span><span class="item-dots"></span><span
+                            class="item-price">20<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">دونتس كبير</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">بوغاشه</span><span class="item-dots"></span><span
+                            class="item-price">20<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">قطعه بيتزا</span><span class="item-dots"></span><span
+                            class="item-price">25<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">فترول</span><span class="item-dots"></span><span
+                            class="item-price">45<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">بامبولينى</span><span class="item-dots"></span><span
+                            class="item-price">40<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">تارت</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">كاستر</span><span class="item-dots"></span><span
+                            class="item-price">30<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">مولتين كنافه</span><span
+                            class="item-dots"></span><span class="item-price">35<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">اكلير</span><span class="item-dots"></span><span
+                            class="item-price">20<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">علبه مينى اكلير</span><span
+                            class="item-dots"></span><span class="item-price">60<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كاب كيك ساده</span><span
+                            class="item-dots"></span><span class="item-price">15<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كاب كيك محشى</span><span
+                            class="item-dots"></span><span class="item-price">25<span class="currency">ج.م</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- القسم 4: الفطائر -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">pie_chart</span>
+                    </div>
+                    <h2 class="section-title">الفطائر</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">فطيره صغيره</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">فطيره كبيره</span><span class="item-dots"></span><span
+                            class="item-price">50<span class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+            <!-- القسم 5: البقسماط -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">breakfast_dining</span>
+                    </div>
+                    <h2 class="section-title">البقسماط</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">كيلو بقسماط</span><span class="item-dots"></span><span
+                            class="item-price">100<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">سن</span><span class="item-dots"></span><span
+                            class="item-price">100<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">كيلو بتون ساليه</span><span
+                            class="item-dots"></span><span class="item-price">170<span
+                                class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">كيلو بالميه</span><span class="item-dots"></span><span
+                            class="item-price">220<span class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+            <!-- القسم 6: النواشف -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">cookie</span>
+                    </div>
+                    <h2 class="section-title">النواشف</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">بسكويت</span><span class="item-dots"></span><span
+                            class="item-price">200<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">بسكويت مكسرات</span><span
+                            class="item-dots"></span><span class="item-price">250<span
+                                class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">بيتى فور</span><span class="item-dots"></span><span
+                            class="item-price">220<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">سابليه</span><span class="item-dots"></span><span
+                            class="item-price">300<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">كوكيز</span><span class="item-dots"></span><span
+                            class="item-price">190<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">منين ساده</span><span class="item-dots"></span><span
+                            class="item-price">180<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">منين عجوه</span><span class="item-dots"></span><span
+                            class="item-price">170<span class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+            <!-- القسم 7: السندوتشات -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">lunch_dining</span>
+                    </div>
+                    <h2 class="section-title">السندوتشات</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">بانيه</span><span class="item-dots"></span><span
+                            class="item-price">35<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">تركى</span><span class="item-dots"></span><span
+                            class="item-price">25<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">رومى</span><span class="item-dots"></span><span
+                            class="item-price">25<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">لانشون</span><span class="item-dots"></span><span
+                            class="item-price">25<span class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+            <!-- القسم 8: العيش -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">set_meal</span>
+                    </div>
+                    <h2 class="section-title">العيش</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">رغيف فينو صغير</span><span
+                            class="item-dots"></span><span class="item-price">3<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">رغيف فينو كبير</span><span
+                            class="item-dots"></span><span class="item-price">5<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كايزر</span><span class="item-dots"></span><span
+                            class="item-price">5<span class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+            <!-- القسم 9: المشروبات -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <span class="material-symbols-outlined">local_cafe</span>
+                    </div>
+                    <h2 class="section-title">المشروبات</h2>
+                </div>
+                <ul class="menu-list">
+                    <li class="menu-item"><span class="item-name">قهوه العميد سينجل</span><span
+                            class="item-dots"></span><span class="item-price">30<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">قهوه تركى</span><span class="item-dots"></span><span
+                            class="item-price">20<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">قهوه فورتداش</span><span
+                            class="item-dots"></span><span class="item-price">30<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">قهوه فرنساوى</span><span
+                            class="item-dots"></span><span class="item-price">30<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">كابتشينو</span><span class="item-dots"></span><span
+                            class="item-price">30<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">لاتيه</span><span class="item-dots"></span><span
+                            class="item-price">30<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">هوت شوكلت</span><span class="item-dots"></span><span
+                            class="item-price">30<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">يانسون</span><span class="item-dots"></span><span
+                            class="item-price">15<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">كابتشينو تورت بيكا</span><span
+                            class="item-dots"></span><span class="item-price">35<span class="currency">ج.م</span></span>
+                    </li>
+                    <li class="menu-item"><span class="item-name">شاى اخضر</span><span class="item-dots"></span><span
+                            class="item-price">15<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">شاى عادى</span><span class="item-dots"></span><span
+                            class="item-price">10<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">كانز</span><span class="item-dots"></span><span
+                            class="item-price">15<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">سفن</span><span class="item-dots"></span><span
+                            class="item-price">15<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">شوبيس</span><span class="item-dots"></span><span
+                            class="item-price">20<span class="currency">ج.م</span></span></li>
+                    <li class="menu-item"><span class="item-name">مياه صغيره</span><span class="item-dots"></span><span
+                            class="item-price">6<span class="currency">ج.م</span></span></li>
+                </ul>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>جميع الأسعار معروضة بالجنيه المصري | الأسعار شاملة الضريبة</p>
+            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gold-accent); font-weight: 700;" dir="ltr">
+                by Manar Atef</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
