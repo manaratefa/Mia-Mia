@@ -5,27 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منيو المخبوزات</title>
-    <!-- خط تاجوال من جوجل لخطوط أنيقة وعصرية تتناسب مع المنيو -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- أيقونات جوجل (Material Symbols) -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         rel="stylesheet" />
     <style>
         :root {
             --bg-color: #121619;
-            /* درجة داكنة استيحاءً من واجهة المخبز */
             --card-bg: #1c2226;
-            /* أفتح قليلاً للبطاقات لتبرز */
             --primary-text: #f5f5f5;
-            /* نص فاتح جداً */
             --secondary-text: #b6c2c9;
-            /* رمادي مائل للزرقة يعطي طابع الفخامة */
             --accent-color: #ff6b6b;
-            /* أحمر ساطع للأسعار */
             --gold-accent: #dca75b;
-            /* ذهبي أنيق متناسب مع الداكن */
             --border-color: #2b353c;
-            /* فواصل داكنة */
             --dot-color: #4a5a66;
             --shadow-color: rgba(0, 0, 0, 0.5);
 
@@ -55,17 +46,14 @@
             position: relative;
             z-index: 2;
             top: -4rem;
-            /* رفع المنيو ليتداخل مع الغلاف */
         }
 
         .hero-banner {
             width: 100%;
             height: 50vh;
-            /* يجعل الغلاف يأخذ نصف الشاشة تقريباً */
             min-height: 400px;
             background-color: var(--secondary-text);
             background-image: url('cover.jpg');
-            /* سيتم وضع صورة الغلاف هنا */
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -189,7 +177,6 @@
             border-radius: 14px;
             color: var(--gold-accent);
             margin-left: 1rem;
-            /* المسافة من اليسار لأن الاتجاه RTL */
         }
 
         .section-icon span {
@@ -225,11 +212,9 @@
             color: var(--primary-text);
             background: var(--card-bg);
             padding-left: 8px;
-            /* لتغطية النقط المنقطة */
             max-width: 75%;
         }
 
-        /* خطوط التوصيل بين الاسم والسعر */
         .item-dots {
             flex-grow: 1;
             border-bottom: 2px dotted var(--dot-color);
@@ -267,7 +252,6 @@
             font-weight: 500;
         }
 
-        /* حركات الظهور (Animations) */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -284,7 +268,6 @@
             animation: fadeIn 0.8s ease backwards;
         }
 
-        /* تتابع ظهور الأقسام */
         .menu-section:nth-child(1) {
             animation-delay: 0.1s;
         }
@@ -321,7 +304,6 @@
             animation-delay: 0.9s;
         }
 
-        /* التصميم المتجاوب للهواتف */
         @media (max-width: 768px) {
             body {
                 padding: 0 0 1.5rem 0;
@@ -651,7 +633,7 @@
         </div>
 
         <footer>
-            <p>جميع الأسعار معروضة بالجنيه المصري | الأسعار شاملة الضريبة</p>
+            <p>"نكهات مميزة تصنع لحظات لا تُنسى"</p
             <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gold-accent); font-weight: 700;" dir="ltr">
                 by Manar Atef</p>
         </footer>
@@ -661,3 +643,4 @@
 
 
 </html>
+
